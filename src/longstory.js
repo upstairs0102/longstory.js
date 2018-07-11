@@ -1,6 +1,6 @@
 /* 
- * It's a Long Story... Javascript Lirary v0.2.0 (Beta)
- * 2018/7/6
+ * It's a Long Story... Javascript Lirary v0.2.1 (Beta)
+ * 2018/7/11
  */
 
 (function(){
@@ -71,6 +71,17 @@ function Longstory(){
         }
     }
 
+    this._getPath = function(){
+        return window.location.pathname;
+    }
+    
+    this._setPath = function(path){
+        if(!path){
+            path = "/";
+        }
+        history.replaceState(history.state,"",path);
+    }
+
     this._push = function(){
         this._historyArr[this._currentStep+1] = {};
         this._historyArr[this._currentStep+1].step = this._currentStep+1;
@@ -79,7 +90,6 @@ function Longstory(){
         
         if(isFunction(this._pushCallback)){
             var param = {
-                action: "push",
                 step: this._currentStep,
                 state: this._historyArr[this._currentStep].stateDict,
             }
@@ -198,6 +208,14 @@ Longstory.prototype.removeState = function(key){
     this._removeState(key);
 }
 
+Longstory.prototype.getPath = function(){
+    return this._getPath();
+}
+
+Longstory.prototype.setPath = function(path){
+    this._setPath(path);
+}
+
 Longstory.prototype.getStep = function(){
     return this._currentStep;
 }
@@ -263,5 +281,3 @@ window.onpopstate = function(event) {
 }
 
 }())
-
-
