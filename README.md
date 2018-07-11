@@ -124,7 +124,7 @@ n: 回復步驟數量
 callback: 委派事件function
 
 
-- 取得
+- 取得state堆疊（陣列）紀錄
 
 **longstory.getHistory()**
 
