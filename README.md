@@ -1,5 +1,5 @@
 # longstory.js
-It's a Long Story... Javascript Lirary v0.2.0 (Beta)
+It's a Long Story... Javascript Lirary v0.2.1 (Beta)
 
 longstory.js是一個用來管理、紀錄**網頁狀態**的javascript library，以ECMA Script 5語法開發，一般主流瀏覽器皆適用（IE11可）
 
@@ -71,12 +71,28 @@ key: 指定狀態的名稱
 
 callback: 委派事件function
 
+進入callback function時會將目前的state注入function參數
+
 
 - 移除狀態
 
 **longstory.removeState(key)**
 
 key: 指定狀態的名稱（null為全部）
+
+
+- 取得網址路徑
+
+**longstory.getPath()**
+
+回傳目前網址路徑
+
+
+- 設定網址路徑
+
+**longstory.setPath(str)**
+
+str:新的網址路徑 例: /index.html?id=21
 
 
 - 取得步驟
@@ -105,6 +121,13 @@ val: 狀態值(可不填)
 
 callback: 委派事件function
 
+進入callback function時會注入參數，格式為：
+
+    {
+        step: 0,  //目前step
+        state: "__state__"  //目前state
+    }
+
 
 - 回復步驟
 
@@ -119,9 +142,17 @@ n: 回復步驟數量
 
 - 回復步驟事件
 
-**longstory.onRestory(callback)**
+**longstory.onRestore(callback)**
 
 callback: 委派事件function
+
+進入callback function時會注入參數，格式為：
+
+    {
+        from: 0,  //來源step
+        step: 1,  //目前step
+        state: "__state__"  //目前state
+    }
 
 
 - 取得state堆疊（陣列）紀錄
