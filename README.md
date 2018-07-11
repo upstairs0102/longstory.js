@@ -45,43 +45,94 @@ longstory.js提供的許多功能讓狀態的操控變得更有彈性好用，�
 ## 功能列表
 
 - 取得狀態
+
  **longstory.getState(key)**
+ 
 key: 狀態名稱
+
 回傳狀態的值
 
+
+
 - 紀錄狀態
+
 **longstory.setState(key)**
+
 key: 狀態名稱
+
 功能等同原生history的replaceState()
 
+
 - 狀態變更事件
+
 **longstory.onChangeState(key, callback)**
+
 key: 指定狀態的名稱
+
 callback: 委派事件function
+
 
 - 移除狀態
+
 **longstory.removeState(key)**
+
 key: 指定狀態的名稱（null為全部）
 
+
 - 取得步驟
+
 **longstory.getStep()**
+
 回傳目前的步驟（流水號，由0開始：0,1,2,3）
 
+
 - 增加步驟
+
 **longstory.push(key, val)**
+
 key: 狀態名稱(可不填)
+
 val: 狀態值(可不填)
+
 功能等同原生history的pushState()
+
 如不填寫直接使用longstory.push()，之後再使用longstory.setState()紀錄步驟
 
+
 - 增加步驟事件
+
 **longstory.onPush(callback)**
+
 callback: 委派事件function
 
+
 - 回復步驟
+
 **longstory.restore(n)**
+
 n: 回復步驟數量
+
 比如+1為往前一步，-1為回上一步（等同瀏覽器的上一頁及下一頁）
+
 如n=0不會改變步驟，但仍會呼叫onPush()
 
 
+- 回復步驟事件
+
+**longstory.onRestory(callback)**
+
+callback: 委派事件function
+
+
+- 取得
+
+**longstory.getHistory()**
+
+回傳state堆疊（陣列）紀錄，格式為：
+
+    [
+        {
+            step: 0,
+            state: "__state__" //setState()或push()所紀錄的state
+        }
+    ]
